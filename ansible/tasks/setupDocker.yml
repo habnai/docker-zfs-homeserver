@@ -25,25 +25,20 @@
 
 - name: Create folder for docker data
   file:
-    path: "{{docker.data_dir}}"
+    path: "${DATADIR}"
     state: directory
 
 - name: Create folder for traefik data
   file:
-    path: "{{docker.data_dir}}/traefik/acme"
+    path: "${DATADIR}/traefik/acme"
     state: directory
 
 - name: Create acme config file for traefik
   file:
-    path: "{{docker.data_dir}}/traefik/acme/acme.json"
+    path: "${DATADIR}/traefik/acme/acme.json"
     state: touch
     mode: '0600'
 
-- name: Copy treafik config file
-  template:
-    src: templates/traefik.toml
-    dest: "{{docker.data_dir}}/traefik/traefik.toml"
-
-- name: Create the external docker network {{docker.external_network}}
+- name: Create the external docker network
   docker_network:
-    name: "{{docker.external_network}}"
+    name: traefik_proxy
