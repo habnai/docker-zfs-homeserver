@@ -1,6 +1,6 @@
 # File: roles/samba/handlers/main.yml
 ---
-- name: Restart samba
+- name: Restart smbd
   ansible.builtin.service:
     name: smbd
     state: restarted

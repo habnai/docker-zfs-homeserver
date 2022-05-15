@@ -67,7 +67,24 @@ services:
       traefik.enable: true
       traefik.http.routers.whoami.rule: Host(`whoami.${SERVER_DOMAIN}`)
       traefik.http.routers.whoami.entrypoints: websecure
-
+  portainer:
+    image: portainer/portainer-ce:2.9.0
+    container_name: portainer
+    command: --admin-password ${PORTAINER_ADMIN_PW}
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock
+      - ${DATADIR}/portainer/data:/data
+    restart: unless-stopped
+    security_opt:
+      - no-new-privileges:true
+    networks:
+      - traefik_proxy
+    labels:
+      my.zone: zone1
+      traefik.enable: true
+      traefik.http.routers.portainer.rule: Host(`portainer.${SERVER_DOMAIN}`)
+      traefik.http.routers.portainer.entrypoints: websecure
+      traefik.http.services.portainer.loadbalancer.server.port: 9000
 networks:
   traefik_proxy:
     name: zone1

@@ -1,0 +1,25 @@
+---
+- name: Setup docker .env file
+  template:
+    src: templates/dockerEnv.env
+    dest: "../.env"
+
+- name: Create folder for docker data
+  file:
+    path: "${DATADIR}"
+    state: directory
+
+- name: Create folder for traefik data
+  file:
+    path: "${DATADIR}/traefik/acme"
+    state: directory
+
+- name: Create acme config file for traefik
+  file:
+    path: "${DATADIR}/traefik/acme/acme.json"
+    state: touch
+    mode: '0600'
+
+- name: Create the external docker network
+  docker_network:
+    name: traefik_proxy
