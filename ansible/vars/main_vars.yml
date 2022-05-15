@@ -27,4 +27,5 @@ shared_folders:
   - {name: 'Shared Backup Folder', path: '/{{zfs.poolName}}/backup/all'}
 
 shared_folders_group: family
-
+ansible_python_interpreter: /usr/bin/python3
+docker_compose_version: "v2.5.0"
