@@ -27,3 +27,8 @@ shared_folders:
   - {name: 'Shared Backup Folder', path: '/{{zfs.poolName}}/backup/all'}
 
 shared_folders_group: family
+docker_compose_version: "v2.5.0"
+packages:
+  - docker-ce
+  - docker-ce-cli
+  - containerd.io

@@ -27,3 +27,7 @@
     mode: 0644
   notify:
     - Restart Smbd
+- name: Restart smbd
+  ansible.builtin.service:
+    name: smbd
+    state: restarted

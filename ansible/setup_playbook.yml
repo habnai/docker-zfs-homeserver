@@ -24,3 +24,8 @@
     - import_tasks: tasks/setupSambaTask.yml
     - import_tasks: tasks/setupDocker.yml
     - import_tasks: tasks/setupDockerfolder.yml
+    handlers:
+    - name: Restart smbd
+      ansible.builtin.service:
+        name: smbd
+        state: restarted
