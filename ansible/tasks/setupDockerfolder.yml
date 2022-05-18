@@ -23,3 +23,21 @@
 - name: Create the external docker network
   docker_network:
     name: traefik_proxy
+
+- name: Create a network with options
+  docker_network:
+    name: vlan20
+    driver: macvlan
+    driver_options:
+       parent: ens192.20
+    ipam_options:
+       subnet: 192.168.20.0/24
+       gateway: 192.168.20.1
+  docker_network:
+    name: vlan10
+    driver: macvlan
+    driver_options:
+       parent: ens192.10
+    ipam_options:
+       subnet: 192.168.10.0/24
+       gateway: 192.168.10.1
