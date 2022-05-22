@@ -29,7 +29,8 @@ services:
       - "80:80"
       - "443:443"
     networks:
-      - traefik_proxy
+      vlan20:
+        ipv4_address: 192.168.20.66
     security_opt:
       - no-new-privileges:true
     volumes:
@@ -77,7 +78,8 @@ services:
     security_opt:
       - no-new-privileges:true
     networks:
-      - traefik_proxy
+      vlan20:
+        ipv4_address: 192.168.20.201
     labels:
       my.zone: zone1
       traefik.enable: true
@@ -115,5 +117,21 @@ services:
       #- WATCHTOWER_NOTIFICATIONS=shoutrrr
       #- WATCHTOWER_NOTIFICATION_URL=pushover://shoutrrr:${PO_TOKEN}@${PO_USERKEY}
 networks:
-  traefik_proxy:
-    name: zone1
+  vlan20:
+    name: vlan20
+    driver: macvlan
+    driver_opts:
+      parent: ens192.20
+    ipam:
+      config:
+        - subnet: 192.168.20.0/24
+          gateway: 192.168.20.1
+  vlan10:
+    name: vlan10
+    driver: macvlan
+    driver_opts:
+      parent: ens192.10
+    ipam:
+      config:
+        - subnet: 192.168.10.0/24
+          gateway: 192.168.10.1
