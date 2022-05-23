@@ -86,26 +86,6 @@ services:
       traefik.http.routers.portainer.rule: Host(`portainer.${SERVER_DOMAIN}`)
       traefik.http.routers.portainer.entrypoints: websecure
       traefik.http.services.portainer.loadbalancer.server.port: 9000
-  heimdall:
-    image: lscr.io/linuxserver/heimdall
-    environment:
-      - PUID=${PUID}
-      - PGID=${PGID}
-      - TZ=${TZ}
-    volumes:
-      - ${DATADIR}/heimdall:/config
-    container_name: heimdall
-    restart: unless-stopped
-    security_opt:
-      - no-new-privileges:true
-    networks:
-      - traefik
-    labels:
-      my.zone: zone1
-      traefik.enable: true
-      traefik.http.routers.heimdall.rule: Host(`heimdall.${SERVER_DOMAIN}`)
-      traefik.http.routers.heimdall.entrypoints: websecure
-      traefik.http.services.heimdall.loadbalancer.server.port: 80
   watchtower:
     container_name: watchtower
     image: containrrr/watchtower
