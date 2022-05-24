@@ -33,6 +33,7 @@
     ipam_options:
        subnet: 192.168.20.0/24
        gateway: 192.168.20.1
+- name: Create a network with options
   docker_network:
     name: vlan10
     driver: macvlan
