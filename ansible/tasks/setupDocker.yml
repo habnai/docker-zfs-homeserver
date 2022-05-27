@@ -15,11 +15,6 @@
     name: '{{packages}}'
     state: present
     update_cache: 'yes'
-    vars:
-      packages:
-        - docker-ce
-        - docker-ce-cli
-        - containerd.io
 - name: 'Add user {{adminuser}} to docker group'
   user:
     name: '{{adminuser}}'
