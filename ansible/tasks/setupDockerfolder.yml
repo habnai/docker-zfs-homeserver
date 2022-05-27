@@ -19,22 +19,3 @@
     path: "${DATADIR}/traefik/acme/acme.json"
     state: touch
     mode: '0600'
-
-- name: Create a network with options
-  community.docker.docker_network:
-    name: vlan20
-    driver: macvlan
-    driver_options:
-       parent: ens192.20
-    ipam_config:
-      - subnet: 192.168.20.0/24
-        gateway: 192.168.20.1
-- name: Create a network with options
-  docker_network:
-    name: vlan10
-    driver: macvlan
-    driver_options:
-       parent: ens192.10
-    ipam_options:
-       subnet: 192.168.10.0/24
-       gateway: 192.168.10.1
