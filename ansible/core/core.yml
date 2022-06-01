@@ -91,8 +91,6 @@ services:
     environment:
       - TZ=${TZ}
       - WATCHTOWER_CLEANUP=true
-      #- WATCHTOWER_NOTIFICATIONS=shoutrrr
-      #- WATCHTOWER_NOTIFICATION_URL=pushover://shoutrrr:${PO_TOKEN}@${PO_USERKEY}
 networks:
   traefik:
     name: zone1
