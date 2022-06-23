@@ -23,8 +23,7 @@
 - name: Download docker-compose
   get_url:
     url: >-
-      https://github.com/docker/compose/releases/download/{{
-      docker_compose_version }}/docker-compose-Linux-x86_64
+      https://github.com/docker/compose/releases/download/{{docker_compose_version}}/docker-compose-Linux-x86_64
     dest: ~/docker-compose
     mode: +x
 - name: Check docker-compose exists
